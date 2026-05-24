@@ -2,10 +2,10 @@
   "name": "express-blog-intro",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "start": "node index.js",
-    "watch": "node --watch index.js"
+    "start": "node --env-file=.env server.js",
+    "watch": "node --watch --env-file=.env server.js"
   },
   "keywords": [],
   "author": "Abdeslam El Ftouh",
@@ -17,5 +17,8 @@
       "onFail": "download"
     }
   },
-  "type": "module"
+  "type": "module",
+  "dependencies": {
+    "express": "^5.2.1"
+  }
 }

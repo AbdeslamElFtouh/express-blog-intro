@@ -1,5 +1,5 @@
 ==========================
-• REPO: express-blog-intro
+# REPO: express-blog-intro
 ==========================
 
 Creiamo il nostro blog personale e giorno dopo giorno lo potremo arricchire con nuove
