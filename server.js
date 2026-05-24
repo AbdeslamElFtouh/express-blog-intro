@@ -1,13 +1,15 @@
-import express, { response } from 'express';
+import express from 'express';
 const app = express();
 const serverPort = process.env.SERVER_PORT;
 const serverUrl = process.env.SERVER_URL;
+
+app.use(express.static('public'));
 
 const posts = [
     {
         title:'Primo post',
         content:'Contenuto primo post del blog.',
-        img:'apple.jpg',
+        img:'/imgs/apple.jpg',
         tags:[
             'vini', 'vidi' , 'vici'
         ]
@@ -15,7 +17,7 @@ const posts = [
     {
         title:'Secondo post',
         content:'Contenuto secondo post del blog.',
-        img:'sunrise.jpg',
+        img:'/imgs/sunrise.jpg',
         tags:[
             'divide', 'et' , 'impera'
         ]
@@ -23,7 +25,7 @@ const posts = [
     {
         title:'Terzo post',
         content:'Contenuto terzo post del blog.',
-        img:'apple.jpg',
+        img:'/imgs/apple.jpg',
         tags:[
             'alea', 'iacta' , 'est'
         ]
@@ -31,7 +33,7 @@ const posts = [
     {
         title:'Quarto post',
         content:'Contenuto quarto post del blog.',
-        img:'sunrise.jpg',
+        img:'/imgs/sunrise.jpg',
         tags:[
             'memento', 'amori' 
         ]
@@ -39,7 +41,7 @@ const posts = [
     {
         title:'Quinto post',
         content:'Contenuto quinto post del blog.',
-        img:'apple.jpg',
+        img:'/imgs/apple.jpg',
         tags:[
             'audentes', 'fortuna' , 'iuvat'
         ]
@@ -50,7 +52,14 @@ app.get('/' , (request , response) => {
     response.send('<h1>Server del mio blog</h1>')
 })
 
-
+app.get('/bacheca', (request, response) => {
+    response.json(posts.map(post => {
+        return{
+            ...post,
+            img:`http://${serverUrl}:${serverPort}${post.img}`
+        }
+    }))
+})
 
 app.listen(`${serverPort}`, (error) => {
     if(error) {
